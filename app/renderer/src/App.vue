@@ -7,8 +7,14 @@
   import RightSidebar from './components/RightSidebar.vue';
   import Button from './components/ui/button/Button.vue';
   import { useUiStore } from './stores/uiStore';
+  import ContextMenuTrigger from './components/ui/context-menu/ContextMenuTrigger.vue';
+  import { ContextMenu } from './components/ui/context-menu';
+  import ContextMenuContent from './components/ui/context-menu/ContextMenuContent.vue';
+  import ContextMenuItem from './components/ui/context-menu/ContextMenuItem.vue';
+  import { useContextMenuStore } from './stores/contextMenuStore';
 
   const uiStore = useUiStore();
+  const contextMenuStore = useContextMenuStore();
 
   // Electron 윈도우 제어 함수
   const minimizeWindow = async () => {
@@ -78,10 +84,24 @@
       <SidebarProvider class="h-full min-h-full w-full">
         <LeftSidebar />
         <SidebarInset class="bg-croffle-bg flex h-full flex-col">
-          <!-- 캘린더 영역 -->
-          <div class="flex-1 overflow-hidden p-4">
-            <Calendar />
-          </div>
+          <ContextMenu>
+            <ContextMenuTrigger as-child>
+              <!-- 캘린더 영역 -->
+              <div class="flex-1 overflow-hidden p-4">
+                <Calendar />
+              </div>
+            </ContextMenuTrigger>
+            <ContextMenuContent>
+              <ContextMenuItem
+                v-for="item in contextMenuStore.items"
+                :key="item.id"
+                :disabled="item.disabled"
+                @click="item.action"
+              >
+                {{ item.label }}
+              </ContextMenuItem>
+            </ContextMenuContent>
+          </ContextMenu>
         </SidebarInset>
         <RightSidebar />
       </SidebarProvider>
