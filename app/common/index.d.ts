@@ -152,8 +152,8 @@ declare module 'croffle' {
     SCHEDULE_CREATE = 'schedule:create',
     SCHEDULE_UPDATE = 'schedule:update',
     SCHEDULE_DELETE = 'schedule:delete',
-    SCHEDULE_EXPORT_TO_FILE = 'schedule:exportSchedulesToFile',
-    SCHEDULE_IMPORT_FROM_FILE = 'schedule:importScheduleFromFile',
+    SCHEDULE_EXPORT_TO_FILE = 'schedule:exportToFile',
+    SCHEDULE_IMPORT_FROM_FILE = 'schedule:importFromFile',
 
     // Tag
     TAG_GET = 'tag:getAll',
@@ -177,7 +177,7 @@ declare module 'croffle' {
 
     // Settings
     SETTINGS_GET = 'settings:get',
-    SETTINGS_GET_OF = 'setttings:getOf',
+    SETTINGS_GET_OF = 'settings:getOf',
     SETTINGS_UPDATE = 'settings:update',
 
     // Window
